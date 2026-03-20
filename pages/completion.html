@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Complete!</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .completion-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        #result-display {
+            margin-bottom: 40px !important;
+            font-size: 2em !important;
+            color: #f1c40f !important;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="completion-container">
+        <div id="result-display"></div>
+        <button class="back-btn" onclick="goBackToGame()">Play Again</button>
+    </div>
+
+    <script>
+        function partyAnimation() {
+            // Create party effect with confetti
+            const colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7DC6F"];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement("div");
+                confetti.style.position = "fixed";
+                confetti.style.width = "10px";
+                confetti.style.height = "10px";
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + "%";
+                confetti.style.top = "-10px";
+                confetti.style.borderRadius = "50%";
+                confetti.style.zIndex = "9999";
+                confetti.style.pointerEvents = "none";
+                
+                document.body.appendChild(confetti);
+                
+                const duration = 3 + Math.random() * 2;
+                const xMove = (Math.random() - 0.5) * 200;
+                
+                confetti.animate([
+                    { transform: "translateY(0) translateX(0) rotate(0deg)", opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(720deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+                });
+                
+                setTimeout(() => confetti.remove(), duration * 1000);
+            }
+            
+            // Display the final message
+            const resultDisplay = document.getElementById("result-display");
+            resultDisplay.style.backgroundColor = "#2ecc71";
+            resultDisplay.style.color = "white";
+            resultDisplay.style.fontSize = "1.6em";
+            resultDisplay.style.fontWeight = "bold";
+            resultDisplay.style.padding = "0.5em 0.5em 2em 2em";
+            resultDisplay.innerText = "Great! Now, Go to the Kitchen, And Sex there!";
+        }
+
+        function goBackToGame() {
+            window.location.href = '../index.html';
+        }
+
+        // Start the party animation when page loads
+        window.addEventListener('load', partyAnimation);
+    </script>
+
+</body>
+</html>
