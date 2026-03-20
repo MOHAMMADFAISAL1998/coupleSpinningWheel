@@ -1,0 +1,284 @@
+:root {
+  --wheel-size: 250px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #2c3e50;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Setup Screen Styles */
+.setup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  padding: 20px;
+}
+
+.setup-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #f1c40f;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.setup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 900px;
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  padding: 40px;
+  border-radius: 15px;
+  border: 2px solid #f1c40f;
+}
+
+.player-setup {
+  width: 100%;
+  text-align: center;
+}
+
+.player-setup h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ecf0f1;
+}
+
+.color-picker {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.color-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.color-option.selected {
+  border-color: white;
+  box-shadow: 0 0 15px rgba(255,255,255,0.8), inset 0 0 10px rgba(0,0,0,0.3);
+  transform: scale(1.15);
+}
+
+#player1-color-display,
+#player2-color-display {
+  font-size: 1.1rem;
+  color: #f1c40f;
+  font-weight: bold;
+}
+
+.turn-setup {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.turn-setup h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ecf0f1;
+}
+
+.first-btn {
+  padding: 12px 30px;
+  margin: 0 10px;
+  font-size: 1.1rem;
+  background-color: #3498db;
+  color: white;
+  border: 2px solid #3498db;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.first-btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.first-btn.active {
+  background-color: #f1c40f;
+  color: #2c3e50;
+  border-color: #f1c40f;
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+}
+
+.setup-btn {
+  padding: 15px 50px;
+  font-size: 1.3rem;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.setup-btn:hover:not(:disabled) {
+  background-color: #27ae60;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(46, 204, 113, 0.3);
+}
+
+.setup-btn:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Game Screen */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #2c3e50;
+}
+
+/* Turn Indicator */
+.turn-indicator {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  min-width: 200px;
+  text-align: center;
+  z-index: 100;
+}
+
+.turn-indicator.player1 {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+}
+
+.turn-indicator.player2 {
+  background: linear-gradient(135deg, #4ECDC4 0%, #45B7AA 100%);
+}
+
+#result-display {
+    margin: 0 1rem;
+  margin-bottom: 80px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: 40px;
+  color: #f1c40f;
+  margin-top: 80px;
+}
+
+.wheel-container {
+  position: relative;
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+}
+
+/* The Ticker/Arrow at the top */
+.arrow {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 30px solid #e74c3c;
+  z-index: 10;
+}
+
+#wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid #ecf0f1;
+  position: relative;
+  overflow: hidden;
+  transition: transform 4s cubic-bezier(0.1, 0, 0.2, 1);
+  /* Background matches the 6 segments */
+  background: conic-gradient(
+    #e74c3c 0deg 14deg,
+    #3498db 14deg 28deg,
+    #9b59b6 28deg 42deg,
+    #f1c40f 42deg 56deg,
+    #e67e22 56deg 70deg,
+    #f032e6 70deg 84deg,
+    #bcf60c 84deg 98deg,
+    #fabebe 98deg 112deg,
+    #008080 112deg 126deg,
+    #bc5df7 126deg 139deg,
+    #9a6324 139deg 153deg,
+    #87ceeb 153deg 167deg,
+    #ff7f50 167deg 181deg,
+    #ffd700 181deg 195deg,
+    #cc0282 195deg 209deg,
+    #ffd881 209deg 223deg,
+    #808000 223deg 236deg,
+    #850101 236deg 250deg,
+    #fffac8 250deg 264deg,
+    #aaffc3 264deg 278deg,
+    #e50808 278deg 291deg,
+    #5a1c31 291deg 305deg,
+    #9b59b6 305deg 319deg,
+    #027230 319deg 333deg,
+    #e67e22 333deg 346deg,
+    #2ecc71 346deg 360deg
+  );
+}
+
+/* 13.8461 */
+
+.spin-btn {
+  margin-top: 40px;
+  padding: 15px 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  transition: 0.2s;
+}
+
+.spin-btn:hover {
+  background-color: #c0392b;
+}
+.spin-btn:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}

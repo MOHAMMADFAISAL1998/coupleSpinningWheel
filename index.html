@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Wheel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="setup-container">
+        <h1>Get Ready to Play!</h1>
+        <div class="setup-content">
+            <div class="player-setup">
+                <h2>Player 1 - Choose Your Color</h2>
+                <div class="color-picker">
+                    <div class="color-option" data-player="1" data-color="#FF6B6B" style="background-color: #fc0f0f;"></div>
+                    <div class="color-option" data-player="1" data-color="#4ECDC4" style="background-color: #04a104;"></div>
+                    <div class="color-option" data-player="1" data-color="#FFE66D" style="background-color: #f8d005;"></div>
+                    <div class="color-option" data-player="1" data-color="#95E1D3" style="background-color: #0f037f;"></div>
+                    <div class="color-option" data-player="1" data-color="#C7CEEA" style="background-color: #860277;"></div>
+                    <div class="color-option" data-player="1" data-color="#FF8B94" style="background-color: #eb6a0e;"></div>
+                </div>
+                <p id="player1-color-display">Selected: None</p>
+            </div>
+
+            <div class="player-setup">
+                <h2>Player 2 - Choose Your Color</h2>
+                <div class="color-picker">
+                    <div class="color-option" data-player="2" data-color="#FF6B6B" style="background-color: #fc0f0f;"></div>
+                    <div class="color-option" data-player="2" data-color="#4ECDC4" style="background-color: #04a104;"></div>
+                    <div class="color-option" data-player="2" data-color="#FFE66D" style="background-color: #f8d005;"></div>
+                    <div class="color-option" data-player="2" data-color="#95E1D3" style="background-color: #0f037f;"></div>
+                    <div class="color-option" data-player="2" data-color="#C7CEEA" style="background-color: #860277;"></div>
+                    <div class="color-option" data-player="2" data-color="#FF8B94" style="background-color: #eb6a0e;"></div>
+                </div>
+                <p id="player2-color-display">Selected: None</p>
+            </div>
+
+            <div class="turn-setup">
+                <h2>Who Goes First?</h2>
+                <button class="first-btn" onclick="setFirstPlayer(1)">Player 1 Starts</button>
+                <button class="first-btn" onclick="setFirstPlayer(2)">Player 2 Starts</button>
+            </div>
+
+            <button id="start-btn" class="setup-btn" onclick="startGame()" disabled>Start Game</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="game-container" style="display: none;">
+        <div id="player-turn-indicator" class="turn-indicator">Player 1's Turn</div>
+        <div id="result-display">Spin for Adventure!</div>
+        <div id="redirect-message" style="display: none; font-size: 1.8em; color: #f1c40f; font-weight: bold; margin-top: 40px;"></div>
+
+        <div class="wheel-container">
+            <div class="arrow"></div>
+            <div id="wheel"></div>
+        </div>
+
+        <button id="spinBtn" class="spin-btn" onclick="spinWheel()">SPIN</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
