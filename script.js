@@ -20,8 +20,8 @@ let players = {
 const prizes = [
   { name: "kiss on Lip for 5 Seconds", color: "#e74c3c" },
   { name: "Kiss on Neck", color: "#3498db" },
-  { name: "Blindfold Tease for one 1-2 minutes", color: "#9b59b6" },
-  { name: "tease your lover intimate area with hand", color: "#f1c40f" },
+  { name: "Blindfold Tease for 1-2 minutes", color: "#9b59b6" },
+  { name: "tease your lover intimate area with hand for 30 seconds", color: "#f1c40f" },
   { name: "Lick your Lover Below the Weist", color: "#e67e22" },
   { name: "Name the Next Move your lover wants to do.", color: "#f032e6" },
   { name: "oral for 10sec", color: "#bcf60c" },
