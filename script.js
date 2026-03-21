@@ -24,7 +24,7 @@ const prizes = [
   { name: "tease your lover intimate area with hand", color: "#f1c40f" },
   { name: "Lick your Lover Below the Weist", color: "#e67e22" },
   { name: "Name the Next Move your lover wants to do.", color: "#f032e6" },
-  { name: "oral for 30sec", color: "#bcf60c" },
+  { name: "oral for 10sec", color: "#bcf60c" },
   { name: "ask him/ her that, What’s the boldest thing you’d want me to say to you in a private moment?", color: "#faacac" },
   { name: "Remove one of your Lover clothes", color: "#008080" },
   { name: "kiss on Lip for 1 Minute", color: "#bc5df7" },
