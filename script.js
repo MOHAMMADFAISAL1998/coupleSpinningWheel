@@ -44,7 +44,6 @@ const prizes = [
   { name: "Remove T-Shirts", color: "#027230" },
   { name: "both jurking off together without touching eachother for 30sec", color: "#fd9d4a" },
   { name: "Remove one of your Lover clothes", color: "#2ecc71" }
-
 ];
 
 let activePrizes = [...prizes]; // Track which prizes are still in play
@@ -150,32 +149,35 @@ function adjustBrightness(color, amount) {
 
 function rebuildWheel() {
   if (activePrizes.length === 0) {
-    wheel.style.background = "#34495e";
+    wheel.style.background = "conic-gradient(#34495e 0deg 360deg)";
     spinBtn.disabled = true;
-    
+
     // Wait 10 seconds before showing the redirect message
     setTimeout(() => {
       const redirectMsg = document.getElementById("redirect-message");
       redirectMsg.style.display = "block";
-      redirectMsg.innerText = "Redirecting to Second Round...";
-      
+      redirectMsg.innerText = "🎊 Game Complete! Redirecting to Second Round...";
+
       // Redirect to tasks page after another 1.5 seconds
       setTimeout(() => {
         window.location.href = "pages/tasks.html";
       }, 1500);
     }, 10000);
-    
+
     gameComplete = true;
     return;
   }
 
+  // Use the modern 3-color wheel design
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFD93D']; // Red, Teal, Yellow
   const sliceSize = 360 / activePrizes.length;
   let gradient = "conic-gradient(";
 
   activePrizes.forEach((prize, index) => {
     const startAngle = index * sliceSize;
     const endAngle = (index + 1) * sliceSize;
-    gradient += `${prize.color} ${startAngle}deg ${endAngle}deg`;
+    const colorIndex = index % colors.length;
+    gradient += `${colors[colorIndex]} ${startAngle}deg ${endAngle}deg`;
 
     if (index < activePrizes.length - 1) {
       gradient += ", ";
@@ -189,19 +191,24 @@ function rebuildWheel() {
 function spinWheel() {
   if (activePrizes.length === 0){
     return;
-  } 
+  }
 
   spinBtn.disabled = true;
-  resultDisplay.innerText = "Spinning...";
+  resultDisplay.innerText = "🎰 Spinning...";
 
   const extraDegrees = Math.floor(Math.random() * 360);
   const totalSpins = (Math.floor(Math.random() * 5) + 5) * 360;
 
   currentRotation += totalSpins + extraDegrees;
-  wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+  // Add spinning class for animation
+  wheel.classList.add('spinning');
+  wheel.style.setProperty('--rotation', currentRotation + 'deg');
 
   // Wait for animation to finish (4 seconds)
   setTimeout(() => {
+    wheel.classList.remove('spinning');
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
     calculateResult(currentRotation);
     spinBtn.disabled = false;
   }, 4000);
@@ -223,7 +230,10 @@ function calculateResult(rotation) {
   // 5. Get the prize
   const winner = activePrizes[sliceIndex];
   const playerName = currentPlayer === 1 ? "Player 1" : "Player 2";
-  resultDisplay.innerText = playerName + " - Task: " + winner.name;
+  resultDisplay.innerText = `🎉 ${playerName} - Task: ${winner.name}`;
+
+  // Add celebration effect
+  createCelebrationEffect();
 
   // 6. Save to player's wins
   players[currentPlayer].wins.push(winner.name);
@@ -234,12 +244,31 @@ function calculateResult(rotation) {
   // 8. Switch to next player
   setTimeout(() => {
     switchTurn();
-  }, 1000);
+  }, 2000);
 
   // 9. Rebuild the wheel without the won segment
   setTimeout(() => {
     rebuildWheel();
   }, 500);
+}
+
+function createCelebrationEffect() {
+  const celebration = document.createElement('div');
+  celebration.className = 'winner-celebration';
+
+  for (let i = 0; i < 20; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.animationDelay = Math.random() * 3 + 's';
+    celebration.appendChild(confetti);
+  }
+
+  document.body.appendChild(celebration);
+
+  setTimeout(() => {
+    document.body.removeChild(celebration);
+  }, 3000);
 }
 
 // Initialize wheel on page load

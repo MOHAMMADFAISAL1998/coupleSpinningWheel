@@ -19,10 +19,14 @@ function initializeTasks() {
     const tasksList = document.getElementById('tasks-list');
     tasksList.innerHTML = '';
 
-    tasks.forEach(task => {
+    tasks.forEach((task, index) => {
         const taskDiv = document.createElement('div');
         taskDiv.className = 'task-item';
         taskDiv.id = `task-${task.id}`;
+
+        const taskNumber = document.createElement('div');
+        taskNumber.className = 'task-number';
+        taskNumber.textContent = index + 1;
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -36,6 +40,7 @@ function initializeTasks() {
         label.textContent = task.text;
         label.style.cursor = 'pointer';
 
+        taskDiv.appendChild(taskNumber);
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
 
@@ -83,9 +88,9 @@ function updateProgress() {
 
     const continueBtn = document.getElementById('continueBtn');
     if (completed === total) {
-        continueBtn.classList.add('active');
+        continueBtn.disabled = false;
     } else {
-        continueBtn.classList.remove('active');
+        continueBtn.disabled = true;
     }
 }
 

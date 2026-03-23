@@ -6,45 +6,201 @@
     <title>Game Complete!</title>
     <link rel="stylesheet" href="../style.css">
     <style>
+        .completion-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: var(--primary-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
         .completion-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .celebration-emoji {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
         }
 
         #result-display {
-            margin-bottom: 40px !important;
-            font-size: 2em !important;
-            color: #f1c40f !important;
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            padding: 50px 40px;
+            border-radius: 30px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 184, 148, 0.3);
+            margin-bottom: 50px;
+            lineup-height: 1.6;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 0.8s ease-out, glow 2s ease-in-out infinite;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(0, 184, 148, 0.3);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(0, 184, 148, 0.6);
+            }
         }
 
         .back-btn {
-            margin-top: 30px;
-            padding: 12px 30px;
-            background-color: #3498db;
+            margin-top: 20px;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
         }
 
         .back-btn:hover {
-            background-color: #2980b9;
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .back-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .completion-page {
+                padding: 30px 20px;
+            }
+
+            .celebration-emoji {
+                font-size: 4rem;
+            }
+
+            #result-display {
+                font-size: 1.8rem;
+                padding: 40px 30px;
+                max-width: 90%;
+            }
+
+            .back-btn {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .completion-page {
+                padding: 20px 15px;
+            }
+
+            .celebration-emoji {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            #result-display {
+                font-size: 1.4rem;
+                padding: 30px 20px;
+                max-width: 95%;
+                border-radius: 20px;
+            }
+
+            .back-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
-<body>
+<body class="completion-page">
 
     <div class="completion-container">
+        <div class="celebration-emoji">🎉</div>
         <div id="result-display"></div>
-        <button class="back-btn" onclick="goBackToGame()">Play Again</button>
+        <button class="back-btn" onclick="goBackToGame()">
+            <span>🎲</span>
+            <span>Play Again</span>
+        </button>
     </div>
 
     <script>
@@ -52,22 +208,23 @@
             // Create party effect with confetti
             const colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7DC6F"];
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 60; i++) {
                 const confetti = document.createElement("div");
                 confetti.style.position = "fixed";
-                confetti.style.width = "10px";
-                confetti.style.height = "10px";
+                confetti.style.width = "12px";
+                confetti.style.height = "12px";
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.left = Math.random() * 100 + "%";
-                confetti.style.top = "-10px";
+                confetti.style.top = "-15px";
                 confetti.style.borderRadius = "50%";
                 confetti.style.zIndex = "9999";
                 confetti.style.pointerEvents = "none";
+                confetti.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
                 
                 document.body.appendChild(confetti);
                 
                 const duration = 3 + Math.random() * 2;
-                const xMove = (Math.random() - 0.5) * 200;
+                const xMove = (Math.random() - 0.5) * 300;
                 
                 confetti.animate([
                     { transform: "translateY(0) translateX(0) rotate(0deg)", opacity: 1 },
@@ -80,14 +237,12 @@
                 setTimeout(() => confetti.remove(), duration * 1000);
             }
             
-            // Display the final message
+            // Display the final message with animation
             const resultDisplay = document.getElementById("result-display");
-            resultDisplay.style.backgroundColor = "#2ecc71";
-            resultDisplay.style.color = "white";
-            resultDisplay.style.fontSize = "1.6em";
-            resultDisplay.style.fontWeight = "bold";
-            resultDisplay.style.padding = "0.5em 0.5em 2em 2em";
-            resultDisplay.innerText = "Great! Now, Go to the Kitchen, And Sex there!";
+            resultDisplay.innerText = "🌟 Great! Now, Go to the Kitchen, And Sex there! 🌟";
+            
+            // Add subtle text animation
+            resultDisplay.style.animation = "slideInUp 0.8s ease-out, glow 2s ease-in-out infinite";
         }
 
         function goBackToGame() {

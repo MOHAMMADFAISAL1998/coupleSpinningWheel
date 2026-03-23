@@ -10,41 +10,74 @@
 
     <!-- Setup Screen -->
     <div id="setup-screen" class="setup-container">
-        <h1>Get Ready to Play!</h1>
+        <div class="setup-header">
+            <h1>🎯 Get Ready to Play!</h1>
+            <p class="setup-subtitle">Choose your colors and decide who goes first</p>
+        </div>
+
         <div class="setup-content">
-            <div class="player-setup">
-                <h2>Player 1 - Choose Your Color</h2>
-                <div class="color-picker">
-                    <div class="color-option" data-player="1" data-color="#FB4343" style="background-color: #fc0f0f;"></div>
-                    <div class="color-option" data-player="1" data-color="#40FA40" style="background-color: #04a104;"></div>
-                    <div class="color-option" data-player="1" data-color="#FADE54" style="background-color: #f8d005;"></div>
-                    <div class="color-option" data-player="1" data-color="#422DFD" style="background-color: #0f037f;"></div>
-                    <div class="color-option" data-player="1" data-color="#F759E4" style="background-color: #860277;"></div>
-                    <div class="color-option" data-player="1" data-color="#FA9248" style="background-color: #eb6a0e;"></div>
+            <div class="player-card">
+                <div class="card-header">
+                    <div class="player-icon">👤</div>
+                    <h2>Player 1</h2>
                 </div>
-                <p id="player1-color-display">Selected: None</p>
-            </div>
-
-            <div class="player-setup">
-                <h2>Player 2 - Choose Your Color</h2>
-                <div class="color-picker">
-                    <div class="color-option" data-player="2" data-color="#FB4343" style="background-color: #fc0f0f;"></div>
-                    <div class="color-option" data-player="2" data-color="#40FA40" style="background-color: #04a104;"></div>
-                    <div class="color-option" data-player="2" data-color="#FADE54" style="background-color: #f8d005;"></div>
-                    <div class="color-option" data-player="2" data-color="#422DFD" style="background-color: #0f037f;"></div>
-                    <div class="color-option" data-player="2" data-color="#F759E4" style="background-color: #860277;"></div>
-                    <div class="color-option" data-player="2" data-color="#FA9248" style="background-color: #eb6a0e;"></div>
+                <div class="card-content">
+                    <h3>Choose Your Color</h3>
+                    <div class="color-picker">
+                        <div class="color-option" data-player="1" data-color="#FF6B6B" style="background-color: #FF6B6B;" title="Red"></div>
+                        <div class="color-option" data-player="1" data-color="#1580d1" style="background-color: #1580d1;" title="Teal"></div>
+                        <div class="color-option" data-player="1" data-color="#FFD93D" style="background-color: #FFD93D;" title="Yellow"></div>
+                        <div class="color-option" data-player="1" data-color="#6C5CE7" style="background-color: #6C5CE7;" title="Purple"></div>
+                        <div class="color-option" data-player="1" data-color="#FF8A65" style="background-color: #FF8A65;" title="Orange"></div>
+                        <div class="color-option" data-player="1" data-color="#25fbad" style="background-color: #25fbad;" title="Mint"></div>
+                    </div>
+                    <p id="player1-color-display" class="color-display">Selected: None</p>
                 </div>
-                <p id="player2-color-display">Selected: None</p>
             </div>
 
-            <div class="turn-setup">
-                <h2>Who Goes First?</h2>
-                <button class="first-btn" onclick="setFirstPlayer(1)">Player 1 Starts</button>
-                <button class="first-btn" onclick="setFirstPlayer(2)">Player 2 Starts</button>
+            <div class="player-card">
+                <div class="card-header">
+                    <div class="player-icon">👤</div>
+                    <h2>Player 2</h2>
+                </div>
+                <div class="card-content">
+                    <h3>Choose Your Color</h3>
+                    <div class="color-picker">
+                        <div class="color-option" data-player="2" data-color="#FF6B6B" style="background-color: #FF6B6B;" title="Red"></div>
+                        <div class="color-option" data-player="2" data-color="#1580d1" style="background-color: #1580d1;" title="Teal"></div>
+                        <div class="color-option" data-player="2" data-color="#FFD93D" style="background-color: #FFD93D;" title="Yellow"></div>
+                        <div class="color-option" data-player="2" data-color="#6C5CE7" style="background-color: #6C5CE7;" title="Purple"></div>
+                        <div class="color-option" data-player="2" data-color="#FF8A65" style="background-color: #FF8A65;" title="Orange"></div>
+                        <div class="color-option" data-player="2" data-color="#25fbad" style="background-color: #25fbad;" title="Mint"></div>
+                    </div>
+                    <p id="player2-color-display" class="color-display">Selected: None</p>
+                </div>
             </div>
 
-            <button id="start-btn" class="setup-btn" onclick="startGame()" disabled>Start Game</button>
+            <div class="turn-card">
+                <div class="card-header">
+                    <div class="turn-icon">🎲</div>
+                    <h2>Game Setup</h2>
+                </div>
+                <div class="card-content">
+                    <h3>Who Goes First?</h3>
+                    <div class="turn-buttons">
+                        <button class="first-btn" onclick="setFirstPlayer(1)">
+                            <span class="btn-icon">1️⃣</span>
+                            Player 1 Starts
+                        </button>
+                        <button class="first-btn" onclick="setFirstPlayer(2)">
+                            <span class="btn-icon">2️⃣</span>
+                            Player 2 Starts
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="start-btn" class="setup-btn" onclick="startGame()" disabled>
+                <span class="btn-icon">🚀</span>
+                Start Game
+            </button>
         </div>
     </div>
 
