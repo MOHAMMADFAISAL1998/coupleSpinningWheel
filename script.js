@@ -25,7 +25,7 @@ const prizes = [
   { name: "Lick your Lover Below the Weist", color: "#e67e22" },
   { name: "Name the Next Move your lover wants to do.", color: "#f032e6" },
   { name: "oral for 10sec", color: "#bcf60c" },
-  { name: "ask him/ her that, What’s the boldest thing you’d want me to say to you in a private moment?", color: "#faacac" },
+  { name: "All of sudden, kiss me on my fav. spot, if you find wrong, you'll have to do what I say.", color: "#faacac" },
   { name: "Remove one of your Lover clothes", color: "#008080" },
   { name: "kiss on Lip for 1 Minute", color: "#bc5df7" },
   { name: "cuddle each other for 2-3seconds", color: "#9a6324" },
@@ -43,7 +43,8 @@ const prizes = [
   { name: "lay down each other for next round", color: "#07cadb" },
   { name: "Remove T-Shirts", color: "#027230" },
   { name: "both jurking off together without touching eachother for 30sec", color: "#fd9d4a" },
-  { name: "Remove one of your Lover clothes", color: "#2ecc71" }
+  { name: "Remove one of your Lover clothes", color: "#2ecc71" },
+  { name: "Show me your Dance performance on any of your favorite song.", color: "#2ece75" }
 ];
 
 let activePrizes = [...prizes]; // Track which prizes are still in play
